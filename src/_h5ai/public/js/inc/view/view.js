@@ -66,7 +66,10 @@ modulejs.define('view/view', ['_', '$', 'core/event', 'core/format', 'core/locat
                 '#view.view-icons.view-size-' + size + ' .item { width: ' + ilsize + 'px !important; }',
                 '#view.view-icons.view-size-' + size + ' .landscape { width: ' + ilsize + 'px !important; height: ' + isize + 'px !important; }',
                 '#view.view-icons.view-size-' + size + ' .landscape img { width: ' + isize + 'px !important; height: ' + isize + 'px !important; }',
-                '#view.view-icons.view-size-' + size + ' .landscape .thumb { width: ' + ilsize + 'px !important; }'
+                '#view.view-icons.view-size-' + size + ' .landscape .thumb { width: ' + ilsize + 'px !important; }',
+                '@media only screen and (max-width: 700px) {',
+                '  #view.view-details.view-size-' + size + ' .label { margin: 0 75px 0 ' + (dsize + 32) + 'px !important; }',
+                '}'
             ];
 
         return rules.join('\n');

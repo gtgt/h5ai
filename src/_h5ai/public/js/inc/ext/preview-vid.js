@@ -9,14 +9,14 @@ modulejs.define('ext/preview-vid', ['_', '$', 'core/event', 'core/settings', 'ex
     function preloadVideo(src, callback) {
 
         var $video = $('<video/>')
-                        .one('loadedmetadata', function () {
-
-                            callback($video);
-                            // setTimeout(function () { callback($video); }, 1000); // for testing
-                        })
-                        .attr('autoplay', 'autoplay')
+                        .attr('preload', 'metadata')
                         .attr('controls', 'controls')
                         .attr('src', src);
+        $video.one('loadedmetadata', function () {
+
+            callback($video);
+            // setTimeout(function () { callback($video); }, 1000); // for testing
+        })[0].load();
     }
 
     function onEnter(items, idx) {
@@ -66,6 +66,7 @@ modulejs.define('ext/preview-vid', ['_', '$', 'core/event', 'core/settings', 'ex
 
                     // small timeout, so $preloadedVideo is visible and therefore $preloadedVideo.width is available
                     setTimeout(function () {
+                        $preloadedVideo[0].play();
                         onAdjustSize();
 
                         preview.setIndex(currentIdx + 1, currentItems.length);
